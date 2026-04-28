@@ -48,6 +48,36 @@ def convert_to_mp4(src_path: Path, dst_path: Path) -> bool:
     return result.returncode == 0 and dst_path.exists()
 
 
+def ensure_browser_mp4(src_path: Path, dst_path: Path) -> Path:
+    if not has_ffmpeg():
+        return src_path
+    if dst_path.exists() and dst_path.stat().st_mtime >= src_path.stat().st_mtime:
+        return dst_path
+
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-i",
+        str(src_path),
+        "-c:v",
+        "libx264",
+        "-profile:v",
+        "baseline",
+        "-level",
+        "3.0",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "-an",
+        str(dst_path),
+    ]
+    result = subprocess.run(cmd, check=False, capture_output=True, text=True)
+    if result.returncode == 0 and dst_path.exists():
+        return dst_path
+    return src_path
+
+
 def run_pipeline(input_path: Path, cfg: Config) -> None:
     pipeline = TrackingPipeline(cfg)
     pipeline.run(str(input_path), cfg.OUTPUT_VIDEO)
@@ -188,8 +218,21 @@ def main() -> None:
 
     output_video = Path("outputs/output.mp4")
     if output_video.exists():
-        st.video(str(output_video))
-        st.caption(f"Output video: {output_video.name} ({output_video.stat().st_size / 1024 / 1024:.1f} MB)")
+        playable_video = ensure_browser_mp4(
+            output_video, Path("outputs/output_streamlit.mp4")
+        )
+        video_path = playable_video.resolve()
+        video_bytes = video_path.read_bytes()
+        st.video(video_bytes, format="video/mp4")
+        st.caption(
+            f"Output video: {output_video.name} ({output_video.stat().st_size / 1024 / 1024:.1f} MB)"
+        )
+        st.download_button(
+            label="Download output video",
+            data=video_bytes,
+            file_name=output_video.name,
+            mime="video/mp4",
+        )
     else:
         st.info("Run the pipeline to generate outputs/output.mp4")
 

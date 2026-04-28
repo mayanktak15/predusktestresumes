@@ -1,107 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Multi-Object Tracking Viewer</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Object Tracking</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=DM+Serif+Display&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page">
-      <header class="hero">
-        <div class="hero__text">
-          <p class="kicker">Tracking Dashboard</p>
-          <h1>Multi-Object Detection and Persistent ID Tracking</h1>
-          <p class="lede">
-            Local viewer for quick inspection of videos and a compact project
-            report summary.
-          </p>
-          <div class="hero__actions">
-            <label class="file-btn">
-              <input id="videoInput" type="file" accept="video/*" />
-              Choose Video
-            </label>
-            <button id="clearBtn" class="ghost">Clear</button>
-          </div>
-          <p class="hint">Tip: Use the annotated output in outputs/output.mp4.</p>
-        </div>
-        <div class="hero__glass">
-          <div class="stat">
-            <span class="stat__label">Detector</span>
-            <span class="stat__value">YOLOv8</span>
-          </div>
-          <div class="stat">
-            <span class="stat__label">Tracker</span>
-            <span class="stat__value">DeepSORT</span>
-          </div>
-          <div class="stat">
-            <span class="stat__label">Advanced</span>
-            <span class="stat__value">Heatmap + Count</span>
-          </div>
-        </div>
-      </header>
-
-      <main class="grid">
-        <section class="panel panel--video">
-          <div class="panel__head">
-            <h2>Video Preview</h2>
-            <div id="videoMeta" class="meta">No video loaded.</div>
-          </div>
-          <div class="video-wrap">
-            <video id="videoPlayer" controls playsinline></video>
-          </div>
-        </section>
-
-        <section class="panel panel--report">
-          <div class="panel__head">
-            <h2>Report Summary</h2>
-            <p class="meta">Snapshot of the technical report.</p>
-          </div>
-          <div class="report" id="reportSummary">
-            <div class="report__item">
-              <h3>Pipeline</h3>
-              <p>Video → Frames → YOLOv8 → DeepSORT → Annotated output + analytics.</p>
-            </div>
-            <div class="report__item">
-              <h3>Identity Consistency</h3>
-              <p>Kalman prediction + appearance embeddings reduce ID switches.</p>
-            </div>
-            <div class="report__item">
-              <h3>Challenges</h3>
-              <p>Occlusion, motion blur, camera motion, and similar-looking subjects.</p>
-            </div>
-            <div class="report__item">
-              <h3>Outputs</h3>
-              <p>Annotated video, trajectory trails, heatmap, object count plot.</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="panel panel--notes">
-          <div class="panel__head">
-            <h2>Notes</h2>
-            <p class="meta">Quick checklist for the assignment.</p>
-          </div>
-          <ul class="checklist">
-            <li>Public video link recorded in README + report.</li>
-            <li>Annotated output video saved to outputs/output.mp4.</li>
-            <li>Sample frames in outputs/sample_frames/.</li>
-            <li>Demo video script in demo_script.md.</li>
-          </ul>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <span>Local-only viewer — no uploads, no server required.</span>
-      </footer>
-    </div>
-
-    <script src="app.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

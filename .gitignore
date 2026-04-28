@@ -37,6 +37,7 @@ sample_frames/
 # Node tooling (web viewer)
 node_modules/
 web/node_modules/
+web/dist/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml

@@ -1,7 +1,42 @@
 .venv/
+venv/
+.env/
 __pycache__/
 *.pyc
 *.pyo
 *.log
 .DS_Store
 .ipynb_checkpoints/
+
+# Python build/test artifacts
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+
+# Outputs and generated assets
+outputs/
+sample_frames/
+
+# Large media files and downloads
+*.mp4
+*.webm
+*.avi
+*.mov
+*.mkv
+*.gif
+
+# Local tooling
+.vscode/
+.idea/
+
+# Node tooling (web viewer)
+node_modules/
+web/node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

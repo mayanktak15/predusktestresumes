@@ -165,6 +165,65 @@ After a run, the `outputs/` directory contains:
 
 ---
 
+## 🎥 Video Source
+
+- Source link: https://www.youtube.com/shorts/AOSFy_nmRPs
+- Local file used: `trakin.webm` (converted to `trakin.mp4` for processing)
+
+---
+
+## ✅ Run Summary (Local Video)
+
+- Input: `trakin.mp4` (1080x1920 @ 30 FPS, 436 frames)
+- Output: `outputs/output.mp4`
+- Average processing speed: ~11.4 FPS on GPU
+- Unique IDs assigned: 1
+- Generated: heatmap + object count plot + sample frames
+
+---
+
+## 🖥️ Frontend Viewer
+
+A lightweight local web page lets you select a video file and view a report summary on screen.
+
+**Open locally:**
+
+```bash
+cd multi_object_tracking
+python -m http.server 8000
+```
+
+Then open:
+
+```
+http://localhost:8000/web/index.html
+```
+
+---
+
+## 🧭 Streamlit App (Run Tracking)
+
+Launch the Streamlit UI to upload a video and run the full pipeline from the browser:
+
+```bash
+cd multi_object_tracking
+streamlit run streamlit_app.py
+```
+
+Then open the URL shown in the terminal. The app will:
+
+- Upload a video file
+- Run YOLOv8 + DeepSORT
+- Show the output video, heatmap, count plot, and sample frames
+
+---
+
+## 🎬 Demo Video
+
+Record a 3–5 minute demo video following [demo_script.md](demo_script.md). Save it as `outputs/demo.mp4` (or upload and link it here).
+
+---
+
 ## ⚠️ Assumptions & Limitations
 
 ### Assumptions
@@ -309,4 +368,15 @@ A time-series chart records the number of actively tracked objects per frame. Th
 ### 8. Conclusion
 
 The YOLOv8 + DeepSORT combination provides a strong baseline for multi-object tracking in sports video. The system successfully assigns persistent IDs across hundreds of frames, handles moderate occlusion, and provides useful analytics (trajectories, heatmaps, count plots). The modular architecture allows easy substitution of detector or tracker components as better models emerge.
-# predusktestresumes
+
+---
+
+## 📦 Submission Checklist
+
+- [ ] GitHub repository or zipped codebase
+- [ ] README.md with setup, run steps, and assumptions
+- [ ] Annotated output video (`outputs/output.mp4`)
+- [ ] Original public video link (see Video Source above)
+- [ ] Short technical report (`report.md`)
+- [ ] Sample screenshots (`outputs/sample_frames/`)
+- [ ] 3–5 minute demo video (`outputs/demo.mp4`)

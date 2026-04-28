@@ -6,6 +6,10 @@
 
 This system implements a complete pipeline for detecting and tracking multiple objects (primarily persons/players) in sports and event video footage. The pipeline is designed for robustness, modularity, and ease of configuration.
 
+**Video source:** https://www.youtube.com/shorts/AOSFy_nmRPs
+
+**Local file used:** `trakin.webm` (converted to `trakin.mp4` for processing)
+
 **Pipeline architecture:**
 
 ```
